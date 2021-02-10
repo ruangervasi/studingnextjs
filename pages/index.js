@@ -69,7 +69,8 @@ export default function Home({ profilesOk }) {
       ))}
     </Box>
   );
-}
+      }
+      
 
 async function profileResult(profi) {
   let headers = new Headers();
