@@ -54,14 +54,14 @@ export default function Home({ profilesOk }) {
       <button onClick={() => {}}>TETEEE</button>
       {teste.map((profile, index) => (
         <Widget key={index}>
-          <WidgetImage src={profile.avatar_url} />
+          <WidgetImage src={profile.data.user.avatarUrl} />
           <WidgetContent>
             <ul>
-              <li>Nome: {profile.name}</li>
-              <li>Bio: {profile.bio}</li>
-              <li>User: {profile.login}</li>
+              <li>Nome: {profile.data.user.name}</li>
+              <li>Bio: {profile.data.user.bio}</li>
+              <li>User: {profile.data.user.login}</li>
               <li>
-                Profile: <a href={profile.url}>{profile.url}</a>
+                Profile: <a href={profile.data.user.url}>{profile.data.user.url}</a>
               </li>
             </ul>
           </WidgetContent>
@@ -71,12 +71,25 @@ export default function Home({ profilesOk }) {
   );
 }
 
-async function profileResult(profi) {
+async function profileResultGraphQL(profi) {
   let headers = new Headers();
-  headers.append('Authorization', 'Basic' + 'pierry');
-  const re = await fetch(`https://api.github.com/users/${profi}`, {
-    method: 'GET',
+  headers.append('Authorization', 'Bearer ' + '6a3f55f6ab3a3958784e8674200137b4a4868e90');
+  const re = await fetch(`https://api.github.com/graphql`, {
+    method: 'POST',
     headers: headers,
+    body: JSON.stringify({
+      query: `query MyQuery {
+        user(login: "${profi}") {
+          id
+          name
+          bio
+          login
+          url
+          avatarUrl
+        }
+      }
+      `
+    })
   })
     .then((res) => {
       if (res.ok) {
@@ -93,7 +106,7 @@ async function analiseArray(arr) {
   console.log(arr)
   let getProfiles = [];
   await arr.map(async (results) => {
-    getProfiles = [...getProfiles, profileResult(results)];
+    getProfiles = [...getProfiles, profileResultGraphQL(results)];
   });
   return Promise.all(getProfiles);
 }
