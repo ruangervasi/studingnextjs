@@ -50,9 +50,10 @@ export default function Home({ profilesOk }) {
 
   return (
     <Box>
-      <input className="user"/>
-      <button onClick={() => {}}>TETEEE</button>
-      {teste.map((profile, index) => (
+      {/* <input className="user"/>
+      <button onClick={() => {}}>TETEEE</button> */}
+
+      {teste && teste.map((profile, index) => (
         <Widget key={index}>
           <WidgetImage src={profile.data.user.avatarUrl} />
           <WidgetContent>
