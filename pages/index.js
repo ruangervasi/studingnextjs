@@ -114,6 +114,7 @@ async function analiseArray(arr) {
 }
 
 export async function getServerSideProps(context) {
+  console.log(process.env.GIT_TOKEN)
   const profiles = ['ruangervasi', 'pierry', 'lucasselliach',"andrebaltieri","jpedroschmitz", "wesleywillians"];
 
   try {
