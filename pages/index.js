@@ -75,7 +75,7 @@ export default function Home({ profilesOk }) {
 
 async function profileResultGraphQL(profi) {
   let headers = new Headers();
-  headers.append('Authorization', 'Bearer ' + 'e3beb280fa3154417bdc02cd2e9033b16ea1d2e9');
+  headers.append('Authorization', 'Bearer ' + `${process.env.GIT_TOKEN}`);
   const re = await fetch(`https://api.github.com/graphql`, {
     method: 'POST',
     headers: headers,
