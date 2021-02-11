@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -74,7 +75,7 @@ export default function Home({ profilesOk }) {
 
 async function profileResultGraphQL(profi) {
   let headers = new Headers();
-  headers.append('Authorization', 'Bearer ' + '6a3f55f6ab3a3958784e8674200137b4a4868e90');
+  headers.append('Authorization', 'Bearer ' + 'e3beb280fa3154417bdc02cd2e9033b16ea1d2e9');
   const re = await fetch(`https://api.github.com/graphql`, {
     method: 'POST',
     headers: headers,
