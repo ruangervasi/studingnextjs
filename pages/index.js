@@ -87,7 +87,7 @@ async function profileResultGraphQL(profi) {
           bio
           login
           url
-          avatarUrl
+          avatarUrl (size: 100)
         }
       }
       `
